@@ -1,6 +1,7 @@
-# AC2_WEB_DEV
-AC2 - DESENVOLVIMENTO WEB
+# AC2 - DESENVOLVIMENTO WEB FRONTEND
 
-
-Integrantes | RA
+  Nome Completo | RA
 - Lucas Jeronymo Ribeiro | 210117
+- Vinicios |
+- Leonardo |
+- Gustavo |
