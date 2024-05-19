@@ -1,0 +1,44 @@
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { User } from '../models/user.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private users: User[] = [
+    { id: 1, name: 'Lucas', email: 'lucas@gmail.com', role: 'Engenheiro de FE', password: 'Ladmin' },
+    { id: 2, name: 'Vinicius', email: 'vinicius@gmail.com', role: 'Engenheiro de BE', password: 'Vadmin' },
+    { id: 3, name: 'Roberto', email: 'roberto@gmail.com', role: 'Analista de dados', password: 'Radmin' },
+    { id: 4, name: 'Roberta', email: 'roberta@gmail.com', role: 'Líder Técnico', password: 'Radmin' }
+  ];
+
+  private usersUpdated = new Subject<User[]>();
+
+  getUsersList() {
+    return [...this.users];
+  }
+
+  addUser(user: User) {
+    const newUser = { ...user, id: this.users.length + 1 };
+    this.users.push(newUser);
+    this.usersUpdated.next([...this.users]);
+  }
+
+  updateUser(user: User) {
+    const index = this.users.findIndex(u => u.id === user.id);
+    if (index !== -1) {
+      this.users[index] = user;
+      this.usersUpdated.next([...this.users]);
+    }
+  }
+
+  deleteUser(userId: number) {
+    this.users = this.users.filter(user => user.id !== userId);
+    this.usersUpdated.next([...this.users]);
+  }
+
+  getUserUpdatedListener() {
+    return this.usersUpdated.asObservable();
+  }
+}

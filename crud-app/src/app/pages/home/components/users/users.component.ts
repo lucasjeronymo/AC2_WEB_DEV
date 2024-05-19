@@ -1,36 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from '../../../../models/user.model';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent {
-  userList: User[] = [
-      { id: 1, name: 'Lucas', email: 'lucas@gmail.com', role: 'Engenheiro de FE', password:'Ladmin' },
-      { id: 2, name: 'Vinicius', email: 'vinicius@gmail.com', role: 'Engenheiro de BE', password:'Vadmin' },
-      { id: 3, name: 'Roberto', email: 'roberto@gmail.com', role: 'Analista de dados', password:'Radmin' },
-      { id: 4, name: 'Roberta', email: 'roberta@gmail.com', role: 'Líder Técnico', password:'Radmin' }
-  ];
+export class UsersComponent implements OnInit, OnDestroy {
+  userList: User[] = [];
+  private usersSub: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {
+    this.usersSub = new Subscription(); }
 
+  ngOnInit() {
+    this.userList = this.userService.getUsersList();
+    this.usersSub = this.userService.getUserUpdatedListener().subscribe(
+      (users: User[]) => {
+        this.userList = users;
+      }
+    );
+  }
+
+  editUser(userId: number) {
+    this.router.navigate(['/edit-user', userId]);
+  }
   deleteUser(id: number) {
-    //Remover usuário da lista usando ID
-    this.userList = this.userList.filter(user => user.id !== id);
+    this.userService.deleteUser(id);
   }
 
-  addUser(newUser: User) {
-    //Adicionar novo usuário à lista
-    this.userList.push(newUser);
+  ngOnDestroy() {
+    this.usersSub.unsubscribe();
   }
-}
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  password: string;
 }
