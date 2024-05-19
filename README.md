@@ -2,6 +2,6 @@
 
   Nome Completo | RA
 - Lucas Jeronymo Ribeiro | 210117
-- Vinicios |
+- Vinicius Matheus Nunes Araujo| 211973
 - Leonardo |
 - Thiago Jun Honma | 222628
