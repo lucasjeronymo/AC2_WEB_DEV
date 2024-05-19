@@ -4,4 +4,4 @@
 - Lucas Jeronymo Ribeiro | 210117
 - Vinicios |
 - Leonardo |
-- Gustavo |
+- Thiago Jun Honma | 222628
