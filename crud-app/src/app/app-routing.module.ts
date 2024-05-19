@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: "", redirectTo: "/login", pathMatch: 'full'},
   {path: "login", component: LoginComponent},
   {path: "signup", component: SignupComponent},
+  
   {
     path: "app", component: HomeComponent,
     children: [
@@ -20,7 +21,8 @@ const routes: Routes = [
       {path: "users", component: UsersComponent},
       {path: 'add-user', component: AddUserComponent },
       {path: "todo-list", component: TodoListComponent},
-      { path: 'edit-user/:id', component: EditUserComponent },
+      {path: 'edit-user/:id', component: EditUserComponent},
+      {path: 'edit-user', component: EditUserComponent }
     ]
   },
 ]

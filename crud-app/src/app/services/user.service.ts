@@ -15,6 +15,11 @@ export class UserService {
 
   private usersUpdated = new Subject<User[]>();
 
+  getUser(userId: number): User | undefined {
+    return this.users.find(user => user.id === userId);
+  }
+  
+
   getUsersList() {
     return [...this.users];
   }
@@ -25,10 +30,10 @@ export class UserService {
     this.usersUpdated.next([...this.users]);
   }
 
-  updateUser(user: User) {
-    const index = this.users.findIndex(u => u.id === user.id);
+  updateUser(updatedUser: User) {
+    const index = this.users.findIndex(u => u.id === updatedUser.id);
     if (index !== -1) {
-      this.users[index] = user;
+      this.users[index] = updatedUser;
       this.usersUpdated.next([...this.users]);
     }
   }

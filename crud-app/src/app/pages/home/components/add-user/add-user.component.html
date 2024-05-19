@@ -1,4 +1,6 @@
+<div class="container mt-4">
 <form [formGroup]="userForm" class="user-form">
+  <h2>Adicionar Usuários</h2>
     <label for="name">Nome:</label>
     <input type="text" id="name" formControlName="name" required>
   
@@ -6,7 +8,7 @@
     <input type="email" id="email" formControlName="email" required>
   
     <label for="role">Função:</label>
-    <select id="role" formControlName="role">
+    <select id="role" formControlName="role" aria-placeholder="Selecione">
       <option value="Engenheiro de FE">Engenheiro de FE</option>
       <option value="Engenheiro de BE">Engenheiro de BE</option>
       <option value="Analista de dados">Analista de dados</option>
@@ -16,6 +18,6 @@
     <label for="password">Senha:</label>
     <input type="password" id="password" formControlName="password" required>
   
-    <button type="button" [disabled]="userForm.invalid" routerLink="/app/users" class="btn-save">Salvar</button>
+    <button type="button" (click)="saveUser()" [disabled]="userForm.invalid" routerLink="/app/users" class="btn-save">Adicionar</button>
   </form>
-  
+</div>

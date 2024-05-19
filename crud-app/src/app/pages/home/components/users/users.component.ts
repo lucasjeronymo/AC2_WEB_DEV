@@ -25,8 +25,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   editUser(userId: number) {
-    this.router.navigate(['/edit-user', userId]);
+    console.log('Edit user clicked:', userId);
+    this.router.navigate(['app/edit-user', userId]);
   }
+   
 
   deleteUser(id: number) {
     this.userService.deleteUser(id);

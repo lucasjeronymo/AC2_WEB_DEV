@@ -25,6 +25,7 @@ export class AddUserComponent implements OnInit {
   saveUser() {
     const newUser = this.userForm.value;
     this.userService.addUser(newUser);
+    console.log('New user added:', newUser);
     this.userForm.reset();
   }
 }

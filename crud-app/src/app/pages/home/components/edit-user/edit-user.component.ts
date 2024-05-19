@@ -12,12 +12,13 @@ import { UserService } from '../../../../services/user.service';
 export class EditUserComponent implements OnInit {
   userForm!: FormGroup;
   userId: number = 0;
+  user: User | undefined;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router 
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -38,23 +39,28 @@ export class EditUserComponent implements OnInit {
   }
 
   loadUserData(userId: number) {
-    const user = this.userService.getUsersList().find(u => u.id === userId);
-    if (user) {
+    this.user = this.userService.getUser(userId);
+    if (this.user) {
       this.userForm.patchValue({
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        password: user.password
+        name: this.user.name,
+        email: this.user.email,
+        role: this.user.role,
+        password: this.user.password
       });
     }
   }
 
   updateUser() {
-    const updatedUser: User = {
-      id: this.userId,
-      ...this.userForm.value
-    };
-    this.userService.updateUser(updatedUser);
-    this.router.navigate(['/users']); 
+    if (this.userForm.valid) {
+      const updatedUser: User = {
+        id: this.userId,
+        ...this.userForm.value
+      };
+      this.userService.updateUser(updatedUser);
+      console.log('User edited:', updatedUser);
+      this.router.navigate(['app/users']);
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }
