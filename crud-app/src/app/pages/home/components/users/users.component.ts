@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../../../../models/user.model';
 import { UserService } from '../../../../services/user.service';
@@ -11,10 +11,9 @@ import { UserService } from '../../../../services/user.service';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   userList: User[] = [];
-  private usersSub: Subscription;
+  private usersSub: Subscription | null = null;
 
-  constructor(private router: Router, private userService: UserService) {
-    this.usersSub = new Subscription(); }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.userList = this.userService.getUsersList();
@@ -28,11 +27,14 @@ export class UsersComponent implements OnInit, OnDestroy {
   editUser(userId: number) {
     this.router.navigate(['/edit-user', userId]);
   }
+
   deleteUser(id: number) {
     this.userService.deleteUser(id);
   }
 
   ngOnDestroy() {
-    this.usersSub.unsubscribe();
+    if (this.usersSub) {
+      this.usersSub.unsubscribe();
+    }
   }
 }

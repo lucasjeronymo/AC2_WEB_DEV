@@ -11,13 +11,13 @@ import { UserService } from '../../../../services/user.service';
 })
 export class EditUserComponent implements OnInit {
   userForm!: FormGroup;
-  userId!: number;
+  userId: number = 0;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router 
   ) {}
 
   ngOnInit() {
@@ -55,6 +55,6 @@ export class EditUserComponent implements OnInit {
       ...this.userForm.value
     };
     this.userService.updateUser(updatedUser);
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users']); 
   }
 }

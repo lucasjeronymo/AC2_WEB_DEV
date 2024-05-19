@@ -1,9 +1,11 @@
 <div class="container-fluid">
   <div class="row align-items-left text-left">
     <div class="col content">
+      <h2>Lista de Usuários</h2>
       <table class="table table-dark table-hover table-item text-center">
         <thead>
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
             <th scope="col">Função</th>
@@ -12,27 +14,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of userList; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
             <td>
-              <button type="button" class="btn btn-primary" routerLink="/edit-user">
-                <i class="bi bi-pencil-square"></i>
-              </button>
-              <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">
-                <i class="bi bi-x-lg"></i>
-              </button>
+              <button class="btn btn-primary" (click)="editUser(user.id)"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-danger" (click)="deleteUser(user.id)"><i class="bi bi-x-lg"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-  <div class="row align-items-left text-left">
-    <div class="col content">
-      <button type="button" class="btn btn-success" routerLink="/add-user">
-        Novo Usuário
-      </button>
     </div>
   </div>
 </div>
