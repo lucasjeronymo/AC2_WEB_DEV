@@ -24,6 +24,14 @@ export class UserService {
     return [...this.users];
   }
 
+  getTotalUsersCount(): number {
+    return this.users.length;
+  }
+
+  getUserCountByRole(role: string): number {
+    return this.users.filter(user => user.role === role).length;
+  }
+
   addUser(user: User) {
     const newUser = { ...user, id: this.users.length + 1 };
     this.users.push(newUser);

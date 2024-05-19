@@ -1,39 +1,37 @@
-
-    <div class="dashboard">
-        <h1>Dashboard de Usuários</h1>
-        <div class="summary">
-            <div class="card">
-                <h2>Quantidade Total de Usuários</h2>
-                <p id="total-users">100</p>
-            </div>
-        </div>
-        <div class="details">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Função</th>
-                        <th>Quantidade de Usuários</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Engenheiro FE</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>Engenheiro BE</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>Analista de Dados</td>
-                        <td>20</td>
-                    </tr>
-                    <tr>
-                        <td>Líder Técnico</td>
-                        <td>25</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="dashboard">
+    <h1>Dashboard de Usuários</h1>
+    <div class="summary">
+      <div class="card">
+        <h2>Quantidade Total de Usuários</h2>
+        <p id="total-users">{{ totalUsers }}</p>
+      </div>
     </div>
-
+    <div class="details">
+      <table>
+        <thead>
+          <tr>
+            <th>Função</th>
+            <th>Quantidade de Usuários</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Engenheiro FE</td>
+            <td>{{ roleCounts['Engenheiro de FE'] }}</td>
+          </tr>
+          <tr>
+            <td>Engenheiro BE</td>
+            <td>{{ roleCounts['Engenheiro de BE'] }}</td>
+          </tr>
+          <tr>
+            <td>Analista de Dados</td>
+            <td>{{ roleCounts['Analista de dados'] }}</td>
+          </tr>
+          <tr>
+            <td>Líder Técnico</td>
+            <td>{{ roleCounts['Líder Técnico'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
